@@ -1,0 +1,177 @@
+/* ...existing styles... */
+:root{
+  --bg:#0b0f14;
+  --text:#e6eef6;
+  --muted:#98a3ad;
+  --accent:#1f6feb; /* subtle blue accent for contrast */
+  --radius:12px;
+  --shadow: 0 8px 30px rgba(2,6,12,0.6);
+  font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 28px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+}
+
+.brand{display:flex;gap:14px;align-items:center}
+.logo{width:60px;height:60px;object-fit:contain}
+.brand h1{margin:0;font-size:20px;font-weight:700}
+.tagline{margin:0;color:var(--muted);font-size:13px}
+
+.actions .btn{margin-left:12px}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:600;
+  border:1px solid transparent;
+  text-decoration:none;
+  color:var(--text);
+  background:transparent;
+  cursor:pointer;
+}
+.btn.primary{
+  position:relative;
+  overflow:hidden;
+  z-index:0;
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.06);
+  background:transparent; /* base kept transparent; visual comes from pseudo-element */
+  transition:transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms ease;
+}
+
+/* animated rainbow noise layer */
+.btn.primary::before{
+  content:"";
+  position:absolute;
+  inset: -30% -30%;
+  z-index:-1;
+  background: linear-gradient(90deg, #ff3b3b, #ff8a00, #ffd400, #2bdc6f, #00d4ff, #6b6bff, #ff3b3b);
+  background-size: 300% 100%;
+  filter: blur(18px) saturate(1.2) contrast(1.02);
+  opacity:0.9;
+  transform: scale(1.2);
+  transition:opacity 300ms ease, transform 6000ms linear;
+  animation: scrollHue 8s linear infinite, noiseShift 6s ease-in-out infinite;
+  mix-blend-mode: screen;
+  will-change:transform, opacity;
+  mask: linear-gradient(#000, #000); /* ensure smooth edges */
+}
+
+/* a subtle moving noise overlay using repeating radial gradients */
+.btn.primary::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.04) 0, transparent 12%),
+    radial-gradient(circle at 80% 70%, rgba(0,0,0,0.06) 0, transparent 14%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  background-size: 200% 200%;
+  opacity:0.6;
+  transition: opacity 240ms ease, transform 300ms ease;
+  animation: noiseFlow 8s linear infinite;
+  filter: blur(0.6px);
+  mix-blend-mode: overlay;
+}
+
+/* hover and active interactions */
+.btn.primary:hover{
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 14px 40px rgba(31,111,235,0.18), 0 6px 18px rgba(2,6,12,0.5);
+}
+.btn.primary:active{
+  transform: translateY(0) scale(0.99);
+  transition: transform 120ms cubic-bezier(.2,.7,.2,1);
+  box-shadow: 0 6px 18px rgba(2,6,12,0.6);
+  opacity:0.98;
+}
+.btn.primary:hover::before{ opacity:1; transform: rotate(12deg) scale(1.18) }
+.btn.primary:active::before{ transform: rotate(6deg) scale(1.12) }
+
+/* keyframes */
+@keyframes scrollHue{
+  0%{ background-position:0% 50% }
+  100%{ background-position:100% 50% }
+}
+@keyframes noiseShift{
+  0%{ filter: blur(18px) hue-rotate(0deg) }
+  50%{ filter: blur(20px) hue-rotate(40deg) }
+  100%{ filter: blur(18px) hue-rotate(0deg) }
+}
+@keyframes noiseFlow{
+  0%{ background-position:0% 0% }
+  50%{ background-position:100% 100% }
+  100%{ background-position:0% 0% }
+}
+
+.btn.ghost{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.04);
+  color:var(--muted);
+}
+.btn.large{padding:12px 18px;font-size:15px}
+
+/* Hero layout */
+.hero{max-width:1100px;margin:36px auto;padding:0 20px}
+.preview{
+  display:grid;
+  grid-template-columns: 1fr 420px;
+  gap:28px;
+  align-items:center;
+}
+
+.screenshot-wrap{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.screenshot{
+  max-width:100%;
+  border-radius:8px;
+  display:block;
+  width:100%;
+  height:auto;
+  box-shadow: 0 8px 30px rgba(12,20,30,0.06);
+}
+
+.info h2{margin:0 0 10px 0;font-size:24px}
+.info p{color:var(--muted);margin:0 0 16px 0;line-height:1.5}
+.features{padding-left:18px;margin:0 0 18px 0;color:var(--muted)}
+.features li{margin:8px 0}
+
+/* Footer note */
+.note{margin-top:18px;color:var(--muted)}
+
+/* Responsive */
+@media (max-width:900px){
+  .preview{grid-template-columns:1fr;gap:18px}
+  .brand h1{font-size:18px}
+  .logo{width:52px;height:52px}
+}
+/* ...existing styles... */

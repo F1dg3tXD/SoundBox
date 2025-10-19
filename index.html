@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SoundBox — Soundboard App</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Caladea&family=Noto+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- ...existing content... -->
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="SoundBox — a compact, modern soundboard. A soundboard made with Node.js.">
+  <meta name="theme-color" content="#0b0f14">
+  <link rel="icon" type="image/png" href="SoundBox.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="anyGIF" property="og:title" />
+  <meta content="SoundBox — a compact, modern soundboard. A soundboard made with Node.js." property="og:description" />
+  <meta content="https://f1dg3txd.github.io/SoundBox/" property="og:url" />
+  <meta content="https://f1dg3txd.github.io/SoundBox/SoundBox.png" property="og:image" />
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:src" content="https://f1dg3txd.github.io/SoundBox/SoundBox.png">
+  <meta content="#ffc400" data-react-helmet="true" name="theme-color" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="SoundBox.png" alt="SoundBox logo" class="logo">
+      <div>
+        <h1>SoundBox</h1>
+        <p class="tagline">A soundboard made with Node.js.</p>
+      </div>
+    </div>
+
+    <nav class="actions">
+      <a class="btn primary" href="https://www.github.com/F1dg3tXD/SoundBox/releases/latest" id="downloadBtn" rel="noopener" target="_blank">Download</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <section class="preview">
+      <div class="screenshot-wrap" aria-hidden="false">
+        <img src="soundbox_app_preview.png" alt="SoundBox app preview screenshot" class="screenshot">
+      </div>
+
+      <aside class="info">
+        <h2>Compact. Fast. Play.</h2>
+        <p>SoundBox is a responsive soundboard designed for quick playback and simple integration. Built with Node.js for desktop distribution and fast local audio serving.</p>
+
+        <ul class="features">
+          <li>Simple drag-and-drop to add sounds</li>
+          <li>Keyboard shortcuts and hotkeys</li>
+          <li>Cross-platform releases on GitHub</li>
+        </ul>
+
+        <div class="controls">
+          <a class="btn primary large" href="https://www.github.com/F1dg3tXD/SoundBox/releases/latest" target="_blank" rel="noopener">Download Latest</a>
+          <button class="btn ghost" id="openRepo">View Repo</button>
+        </div>
+
+        <footer class="note">
+          <small>Released on GitHub • Node.js backend</small>
+        </footer>
+      </aside>
+    </section>
+  </main>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "lit/": "https://cdn.jsdelivr.net/npm/lit@2.7.5/",
+        "nipplejs": "https://cdn.jsdelivr.net/npm/nipplejs@0.9.0/dist/nipplejs.min.js"
+      }
+    }
+  </script>
+  <script src="main.js" type="module"></script>
+  <!-- ...existing content... -->
+</body>
+</html>
